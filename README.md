@@ -5,16 +5,16 @@ This addon begins while I was working on [Efecto Mariposa](http://patriciogonzal
 All of this effect heritage from ofxFXObject. Making easy to combine them and create new ones.
 
 ## ofxFXObject ##
-It´s the parent class of all the other effect. If you want to make a new filter you may want to start looking at the ofxFXObject.h .
+Is the parent class of all the other effect. If you want to make a new filter you may want to start looking at the ofxFXObject.h .
 
-The structure it´s easy.
+The structure it's easy.
 
-1. Constructor: here it´s necessary to set three vital variables: 
-    - ```int passes```: the number of passes or itineration of the main ping pong betweens FBO´s  
+1. Constructor: here it's necessary to set three vital variables: 
+    - ```int passes```: the number of passes or iterations of the main ping pong betweens FBOs  
     - ```int internalFormat```: if it use GL_RGB, GL_RGBA, GL_RGB16f, GL_RGBA16f, GL_RGB32f, GL_RGBA32f, etc...
-    - ```string fragShader```: it´s the code of the shader. Note that some changes have to be made in order to fill everything on a string
+    - ```string fragShader```: its the code of the shader. Note that some changes have to be made in order to fill everything on a string
     
-2. ```allocate(width,height,GL_RGBA)```: This usually it´s no need to bee re-define. It´s basically allocate the FBO´s and loads the shader by using injectShader();
+2. ```allocate(width,height,GL_RGBA)```: This usually it's no need to bee re-define. It basically allocates the FBOs and loads the shader by using injectShader();
 
 3. ```setCode(string fragContent)```: here is where the shaders are loaded. See the example bellow.
 
@@ -37,7 +37,7 @@ ofxFXObject fxObject = ofxFXObject();
 
 fxObject.allocate(800,600); // At this point it will load a default timer shader
 
-//Let´s play a little injecting a new one
+//Let's play a little injecting a new one
 fxObject.setCode("#version 120\n\
                     \
                     uniform sampler2DRect backbuffer;\
@@ -60,7 +60,7 @@ fxObject.setCode("#version 120\n\
 On update:
 
 ```c++
-fxObject.begin();   // for tex0 you don´t need to pass the 0 as an argument 
+fxObject.begin();   // for tex0 you don't need to pass the 0 as an argument 
     //What ever you want to render to tex0
 fxObject.end();
 
@@ -81,10 +81,10 @@ fxObject.draw();
 ``` 
 
 ### Copy, Inject & Share ###
-If you are curious and want to learn the best way it´s to see and edit code. You could go to [Ricardo Caballero´s webGL Sandbox](http://mrdoob.com/projects/glsl_sandbox/) or [Inigo Quilez´s ShaderToy](http://www.iquilezles.org/apps/shadertoy/) to found some inspiration. Explore. Make changes. Inject. Compile.
-May be it´s the case things not compile as you spect. Some times (most of them when you are dealing with other textures) you will need to make some changes. As far as I know openGL and GPU hardware it´s makes lot´s of changes and improves year after year. So lot´s of problems related to compatibility will happened. Also openFrameworks works fine with openGL 1.2 and it use by default the ARB Rect Textures. 
+If you are curious and want to learn the best way it's to see and edit code. You could go to [Ricardo Caballero's webGL Sandbox](http://mrdoob.com/projects/glsl_sandbox/) or [Inigo Quilez's ShaderToy](http://www.iquilezles.org/apps/shadertoy/) to found some inspiration. Explore. Make changes. Inject. Compile.
+May be it's the case things not compile as you spect. Some times (most of them when you are dealing with other textures) you will need to make some changes. As far as I know openGL and GPU hardware it's makes lots of changes and improves year after year. So lots of problems related to compatibility will happened. Also openFrameworks works fine with openGL 1.2 and it use by default the ARB Rect Textures. 
 
-Having that in mind the process of adapting code it´s a matter of searching on google. Fortunately you can see the ones I already implement and make them work.
+Having that in mind the process of adapting code it's a matter of searching on google. Fortunately you can see the ones I already implement and make them work.
 
 General tips:
 
@@ -97,13 +97,13 @@ float f = 1.0;  // GOOD
 
 ``` 
 
-* Norm coordinates: as far as I know there are two types of textures sample2D and sample2DRect. The first ones have the same length in both sides while the second one not. When you are using texture2D( tex, pos) the position have to be normalized while on texture2DRect(tex, pos) it´s not normalized. 
+* Norm coordinates: as far as I know there are two types of textures sample2D and sample2DRect. The first ones have the same length in both sides while the second one not. When you are using texture2D( tex, pos) the position have to be normalized while on texture2DRect(tex, pos) it isn't normalized. 
 
 
 ### Mix them all ###
 
 ofxFXObject have some handy operators that let you combine them really easily. 
-At the Mix´s Example you will find how to do it. Basicaly it´s somethin like this
+At the Mix's Example you will find how to do it. Basicaly it's somethin like this
 
 ```c++
 
@@ -140,11 +140,11 @@ If you are thinking on making your own filter or generative shader. You may want
 
 * ```ofxSwapBuffer.h```: this is actually a class for making easy dealing with ping-pongs.
 
-In the src/ directory of the addon you will find lot´s of subClasses that inherit from ofxFXObject. They are decided in difference categories.
+In the src/ directory of the addon you will find lots of subClasses that inherit from ofxFXObject. They are decided in difference categories.
 
 ### Interactive
 
-First case, the ones that in some point breaks the  structure of ofxFXObject with some extra tweaks. Like the way the pingPong works. The number of shaders need and how they pass the data to each other. Or if the implement vertex or Geometry shader as well. That´s the case of:
+First case, the ones that in some point breaks the  structure of ofxFXObject with some extra tweaks. Like the way the pingPong works. The number of shaders need and how they pass the data to each other. Or if the implement vertex or Geometry shader as well. That's the case of:
 
 * ofxFlocking: a GPU flocking system that implement two different types of fragment shaders, plus one vertex and geometry shader [Look at the video example](http://patriciogonzalezvivo.com/2011/ofxfx/). If you are interested in this technique you can explore the openFrameworks core example that I made at: https://github.com/openframeworks/openFrameworks/tree/master/examples/gl/GPUparticleSystemExample
 
@@ -185,16 +185,16 @@ The second case, are the ones could be use as filters. That means, they could be
 
 ### Generative
 
-* ofxTint: generate a noise like pattern applied to a mask that´s it´s very similar to ink;
+* ofxTint: generate a noise like pattern applied to a mask that is very similar to ink;
 ![tint](http://patriciogonzalezvivo.com/2011/ofxfx/tint.png)
  
-* ofxGrayScott: based on ones [Cinder´s Reaction Diffusion example](http://libcinder.org/) that it´s based on [Gray-Scott model](http://mrob.com/pub/comp/xmorphia/). [VIDEO](http://www.patriciogonzalezvivo.com/blog/?p=488)
+* ofxGrayScott: based on ones [Cinder's Reaction Diffusion example](http://libcinder.org/) that it's based on [Gray-Scott model](http://mrob.com/pub/comp/xmorphia/). [VIDEO](http://www.patriciogonzalezvivo.com/blog/?p=488)
 
 
 ## Other Examples 
 On this addon you will find examples of the classes I just describe. Some of them are combined together in order to show clearly how to use them. Other examples shows new ways of making new shaders by injecting code or extending classes as the following ones:
 
-* sandbox: diferent eyecandy shaders from [Ricardo Caballero´s webGL Sandbox](http://mrdoob.com/projects/glsl_sandbox/) and [Inigo Quilez´s ShaderToy](http://www.iquilezles.org/apps/shadertoy/) together and then passed to post-processing GLSL shaders that acts as filters ( blur, glow, bloom, etc ) 
+* sandbox: diferent eyecandy shaders from [Ricardo Caballero's webGL Sandbox](http://mrdoob.com/projects/glsl_sandbox/) and [Inigo Quilez's ShaderToy](http://www.iquilezles.org/apps/shadertoy/) together and then passed to post-processing GLSL shaders that acts as filters ( blur, glow, bloom, etc ) 
 
 * conway: life game made by [Kalwalt](http://www.kalwaltart.it/)
 
