@@ -14,9 +14,9 @@ The structure it's easy.
     - ```int internalFormat```: if it use GL_RGB, GL_RGBA, GL_RGB16f, GL_RGBA16f, GL_RGB32f, GL_RGBA32f, etc...
     - ```string fragShader```: its the code of the shader. Note that some changes have to be made in order to fill everything on a string
     
-2. ```allocate(width,height,GL_RGBA)```: This usually it's no need to bee re-define. It basically allocates the FBOs and loads the shader by using injectShader();
+2. ```allocate(width,height,GL_RGBA)```: There is usually no need to redefine this. It basically allocates the FBOs and loads the shader by using injectShader();
 
-3. ```setCode(string fragContent)```: here is where the shaders are loaded. See the example bellow.
+3. ```setCode(string fragContent)```: Here is where the shaders are loaded. See the example below.
 
 4. ```begin(int texN)``` and ```end(int texN)```: remember nTextures variable? you can passthrough information to it by using this end() and begin() and giving the argument the number of texture you want to open. This texture can be access from the shader by the ```uniform sample2DRect tex0``` or ```tex1``` or ```tex2``` and so on. 
 
